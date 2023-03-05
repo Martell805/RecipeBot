@@ -1,6 +1,6 @@
 from aiogram.types import Message, CallbackQuery
 
-from dispatcher import dp
+from general import dp
 
 
 @dp.callback_query_handler(text="category_search_hint")

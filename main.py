@@ -1,7 +1,8 @@
 from aiogram import executor
 
-from dispatcher import dp
+from general import dp, SqlAlchemyBase, engine
 from commands import *
 
-if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+SqlAlchemyBase.metadata.create_all(engine)
+
+executor.start_polling(dp)
