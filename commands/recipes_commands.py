@@ -21,7 +21,7 @@ async def add_recipe(message: Message) -> None:
 
 
 @dp.message_handler(regexp=r"/find [а-яА-я0-9 ]*")
-async def add_recipe(message: Message) -> None:
+async def find_recipe(message: Message) -> None:
     """
     Function which answers "/find" and shows requester recipe from database to user
     :param message: Message from TG
