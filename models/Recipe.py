@@ -5,6 +5,9 @@ from general import SqlAlchemyBase
 
 
 class Recipe(SqlAlchemyBase, SerializerMixin):
+    """
+    Recipe DTO and entity
+    """
     __tablename__ = "recipe"
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
