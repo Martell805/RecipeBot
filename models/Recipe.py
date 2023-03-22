@@ -11,6 +11,7 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
     name = Column("name", String)
     ingredients = Column("ingredients", String)
     categories = Column("categories", String)
+    description = Column("description", String)
 
     def __init__(self, name: str = "", ingredients: str = "", categories: str = ""):
         self.name = name
@@ -29,23 +30,28 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
     def get_categories(self) -> str:
         return self.categories
 
+    def get_description(self) -> str:
+        return self.description
+
     def set_name(self, name: str) -> "Recipe":
         self.name = name
-
         return self
 
     def set_ingredients(self, ingredients: str) -> "Recipe":
         self.ingredients = ingredients
-
         return self
 
     def set_categories(self, categories: str) -> "Recipe":
         self.categories = categories
+        return self
 
+    def set_description(self, description: str) -> "Recipe":
+        self.description = description
         return self
 
     def __repr__(self) -> str:
         return str(self)
 
     def __str__(self) -> str:
-        return f'{self.get_id()}. {self.get_name()} \n{self.get_categories()} \n{self.get_categories()}'
+        return f'{self.get_name()} \n\n{self.get_categories()} \n\n{self.get_ingredients()} ' \
+               f' \n\n{self.get_description()}'
