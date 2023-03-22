@@ -20,30 +20,30 @@ async def category_search_hint(callback: CallbackQuery):
 async def random_breakfast(callback: CallbackQuery):
     result = session.query(Recipe).filter(Recipe.categories == "Завтрак").all()
     names = ', '.join([x.name for x in result])
-    if len(names) == 0:
+    if not names:
         await callback.message.answer("Рецепты не найдены")
-    else:
-        await callback.message.answer(names)
+        return
+    await callback.message.answer(names)
 
 
 @dp.callback_query_handler(text="random_lunch")
 async def random_lunch(callback: CallbackQuery):
     result = session.query(Recipe).filter(Recipe.categories == "Обед").all()
     names = ', '.join([x.name for x in result])
-    if len(names) == 0:
+    if not names:
         await callback.message.answer("Рецепты не найдены")
-    else:
-        await callback.message.answer(names)
+        return
+    await callback.message.answer(names)
 
 
 @dp.callback_query_handler(text="random_dinner")
 async def random_dinner(callback: CallbackQuery):
     result = session.query(Recipe).filter(Recipe.categories == "Ужин").all()
     names = ', '.join([x.name for x in result])
-    if len(names) == 0:
+    if not names:
         await callback.message.answer("Рецепты не найдены")
-    else:
-        await callback.message.answer(names)
+        return
+    await callback.message.answer(names)
 
 
 @dp.callback_query_handler(text="ingredient_search_hint")
