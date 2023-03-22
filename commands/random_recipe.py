@@ -8,6 +8,11 @@ from models.Recipe import Recipe
 
 @dp.callback_query_handler(text="random_recipe")
 async def random_recipe(callback: CallbackQuery):
+    """
+    Answer to callback random_recipe. Sends back random recipe
+    :param callback: Callback from TG
+    :return: None
+    """
     recipe = session.query(Recipe).order_by(func.random()).first()
 
     keyboard = InlineKeyboardMarkup(one_time_keyboard=True).row(
