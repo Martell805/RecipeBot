@@ -13,10 +13,11 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
     categories = Column("categories", String)
     description = Column("description", String)
 
-    def __init__(self, name: str = "", ingredients: str = "", categories: str = ""):
+    def __init__(self, name: str = "", ingredients: str = "", categories: str = "", description: str = ""):
         self.name = name
         self.ingredients = ingredients
         self.categories = categories
+        self.description = description
 
     def get_id(self) -> int:
         return self.id

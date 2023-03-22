@@ -19,17 +19,31 @@ async def category_search_hint(callback: CallbackQuery):
 @dp.callback_query_handler(text="random_breakfast")
 async def random_breakfast(callback: CallbackQuery):
     result = session.query(Recipe).filter(Recipe.categories == "Завтрак").all()
-    await callback.message.answer(result[0])
+    names = ', '.join([x.name for x in result])
+    if len(names) == 0:
+        await callback.message.answer("Рецепты не найдены")
+    else:
+        await callback.message.answer(names)
 
 
 @dp.callback_query_handler(text="random_lunch")
 async def random_lunch(callback: CallbackQuery):
-    await callback.message.answer("Мясо")
+    result = session.query(Recipe).filter(Recipe.categories == "Обед").all()
+    names = ', '.join([x.name for x in result])
+    if len(names) == 0:
+        await callback.message.answer("Рецепты не найдены")
+    else:
+        await callback.message.answer(names)
 
 
 @dp.callback_query_handler(text="random_dinner")
 async def random_dinner(callback: CallbackQuery):
-    await callback.message.answer("Овсянка")
+    result = session.query(Recipe).filter(Recipe.categories == "Ужин").all()
+    names = ', '.join([x.name for x in result])
+    if len(names) == 0:
+        await callback.message.answer("Рецепты не найдены")
+    else:
+        await callback.message.answer(names)
 
 
 @dp.callback_query_handler(text="ingredient_search_hint")
