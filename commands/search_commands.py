@@ -6,7 +6,7 @@ from models.Recipe import Recipe
 
 
 @dp.callback_query_handler(text="category_search_hint")
-async def category_search_hint(callback: CallbackQuery):
+async def category_search_hint(callback: CallbackQuery) -> None:
     """
     Answer to callback category_search_hint. Gives user menu to choose category of recipe
     :param callback: Callback from TG
@@ -22,7 +22,7 @@ async def category_search_hint(callback: CallbackQuery):
 
 
 @dp.callback_query_handler(text="random_breakfast")
-async def random_breakfast(callback: CallbackQuery):
+async def random_breakfast(callback: CallbackQuery) -> None:
     """
     Answer to callback random_breakfast. Sends back random recipe with "Завтрак" category
     :param callback: Callback from TG
@@ -37,7 +37,7 @@ async def random_breakfast(callback: CallbackQuery):
 
 
 @dp.callback_query_handler(text="random_lunch")
-async def random_lunch(callback: CallbackQuery):
+async def random_lunch(callback: CallbackQuery) -> None:
     """
     Answer to callback random_lunch. Sends back random recipe with "Обед" category
     :param callback: Callback from TG
@@ -52,7 +52,7 @@ async def random_lunch(callback: CallbackQuery):
 
 
 @dp.callback_query_handler(text="random_dinner")
-async def random_dinner(callback: CallbackQuery):
+async def random_dinner(callback: CallbackQuery) -> None:
     """
     Answer to callback random_dinner. Sends back random recipe with "Ужин" category
     :param callback: Callback from TG

@@ -1,0 +1,7 @@
+site_name: PecipeBot Docs
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings

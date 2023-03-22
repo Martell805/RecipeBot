@@ -4,7 +4,7 @@ from general import dp
 
 
 @dp.message_handler(commands=["start", "help"])
-async def send_welcome(message: Message):
+async def send_welcome(message: Message) -> None:
     """
     Function which answers "/start" or "/help" and sends bot`s main menu
     :param message: Message from TG
