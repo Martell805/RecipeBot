@@ -7,7 +7,7 @@ from models.Recipe import Recipe
 
 
 @dp.callback_query_handler(text="random_recipe")
-async def random_recipe(callback: CallbackQuery):
+async def random_recipe(callback: CallbackQuery) -> None:
     """
     Answer to callback random_recipe. Sends back random recipe
     :param callback: Callback from TG

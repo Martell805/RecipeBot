@@ -1,0 +1,7 @@
+site_name: RecipeBot Docs
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings

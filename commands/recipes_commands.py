@@ -5,7 +5,7 @@ from models.Recipe import Recipe
 
 
 @dp.message_handler(regexp=r"/add *\n*\n*\n*")
-async def add_recipe(message: Message):
+async def add_recipe(message: Message) -> None:
     """
     Function which answers "/add" and adds given recipe to database
     :param message: Message from TG
@@ -21,7 +21,7 @@ async def add_recipe(message: Message):
 
 
 @dp.message_handler(regexp=r"/find [а-яА-я0-9 ]*")
-async def add_recipe(message: Message):
+async def find_recipe(message: Message) -> None:
     """
     Function which answers "/find" and shows requester recipe from database to user
     :param message: Message from TG
