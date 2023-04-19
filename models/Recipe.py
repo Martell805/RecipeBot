@@ -15,12 +15,17 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
     ingredients = Column("ingredients", String)
     categories = Column("categories", String)
     description = Column("description", String)
+    thumbs_up = Column("thumbs_up", Integer, default=0)
+    thumbs_down = Column("thumbs_down", Integer, default=0)
 
-    def __init__(self, name: str = "", ingredients: str = "", categories: str = "", description: str = ""):
+    def __init__(self, name: str = "", ingredients: str = "", categories: str = "",
+                 description: str = "", thumbs_up: int = 0, thumbs_down: int = 0):
         self.name = name
         self.ingredients = ingredients
         self.categories = categories
         self.description = description
+        self.thumbs_up = thumbs_up
+        self.thumbs_down = thumbs_down
 
     def get_id(self) -> int:
         return self.id
@@ -36,6 +41,12 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
 
     def get_description(self) -> str:
         return self.description
+
+    def get_thumbs_up(self) -> int:
+        return self.thumbs_up
+
+    def get_thumbs_down(self) -> int:
+        return self.thumbs_down
 
     def set_name(self, name: str) -> "Recipe":
         self.name = name
@@ -53,9 +64,16 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
         self.description = description
         return self
 
+    def inc_rating(self) -> None:
+        self.thumbs_up += 1
+
+    def dec_rating(self) -> None:
+        self.thumbs_down += 1
+
     def __repr__(self) -> str:
         return str(self)
 
     def __str__(self) -> str:
-        return f'{self.get_name()} \n\n{self.get_categories()} \n\n{self.get_ingredients()} ' \
+        return f'{self.get_name()} {self.get_thumbs_up()}👍🏻 {self.get_thumbs_down()}👎🏻 ' \
+               f'\n\n{self.get_categories()} \n\n{self.get_ingredients()} ' \
                f' \n\n{self.get_description()}'
