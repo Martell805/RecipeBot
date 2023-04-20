@@ -1,4 +1,4 @@
-from aiogram.types import Message
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from general import dp, session
 from models.Recipe import Recipe
@@ -35,4 +35,9 @@ async def find_recipe(message: Message) -> None:
         await message.answer("Такой рецепт не найден")
         return
 
-    await message.answer(result)
+    keyboard = InlineKeyboardMarkup(one_time_keyboard=True).row(
+        InlineKeyboardButton(text="👍🏻", callback_data="upvote " + str(result.id)),
+        InlineKeyboardButton(text="👎🏻", callback_data="downvote " + str(result.id)),
+    )
+
+    await message.answer(result, reply_markup=keyboard)
