@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQu
 
 from sqlalchemy.sql import func
 
-from general import dp, session
+from general import dp, session, bot
 from models.Recipe import Recipe
 
 
@@ -21,4 +21,5 @@ async def random_recipe(callback: CallbackQuery) -> None:
     )
 
     await callback.answer(cache_time=0)
-    await callback.message.answer(recipe, reply_markup=keyboard)
+    await bot.send_photo(callback.message.chat.id, recipe.get_photo_id(), caption=recipe, reply_markup=keyboard)
+

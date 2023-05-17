@@ -1,4 +1,4 @@
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ParseMode
+from aiogram.types import CallbackQuery
 
 from general import dp, session
 from models.Recipe import Recipe
@@ -16,8 +16,8 @@ async def upvote(callback: CallbackQuery) -> None:
     recipe.inc_rating()
     session.commit()
 
-    ans = f"Спасибо за ваше мнение! Рейтинг блюда \"{recipe.get_name()}\": {recipe.get_thumbs_up()}👍🏻 "  \
-          f" {recipe.get_thumbs_down()}👎🏻."
+    ans = f"Спасибо за ваше мнение!\n\nРейтинг блюда \"{recipe.get_name()}\"🏆" \
+          f"\nПонравилось: {recipe.get_thumbs_up()}👍🏻\nНе понравилось: {recipe.get_thumbs_down()}👎🏻"
     await callback.answer(cache_time=0)
     await callback.message.answer(ans)
 
@@ -34,7 +34,7 @@ async def downvote(callback: CallbackQuery) -> None:
     recipe.dec_rating()
     session.commit()
 
-    ans = f"Спасибо за ваше мнение! Рейтинг блюда \"{recipe.get_name()}\": {recipe.get_thumbs_up()}👍🏻 "  \
-          f" {recipe.get_thumbs_down()}👎🏻."
+    ans = f"Спасибо за ваше мнение!\n\nРейтинг блюда \"{recipe.get_name()}\"🏆" \
+          f"\nПонравилось: {recipe.get_thumbs_up()}👍🏻\nНе понравилось: {recipe.get_thumbs_down()}👎🏻"
     await callback.answer(cache_time=0)
     await callback.message.answer(ans)

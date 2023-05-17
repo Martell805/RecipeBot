@@ -15,15 +15,17 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
     ingredients = Column("ingredients", String)
     categories = Column("categories", String)
     description = Column("description", String)
+    photo_id = Column("photo_id", String)
     thumbs_up = Column("thumbs_up", Integer, default=0)
     thumbs_down = Column("thumbs_down", Integer, default=0)
 
     def __init__(self, name: str = "", ingredients: str = "", categories: str = "",
-                 description: str = "", thumbs_up: int = 0, thumbs_down: int = 0):
+                 description: str = "", photo_id: str = "", thumbs_up: int = 0, thumbs_down: int = 0):
         self.name = name
         self.ingredients = ingredients
         self.categories = categories
         self.description = description
+        self.photo_id = photo_id
         self.thumbs_up = thumbs_up
         self.thumbs_down = thumbs_down
 
@@ -41,6 +43,9 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
 
     def get_description(self) -> str:
         return self.description
+
+    def get_photo_id(self) -> str:
+        return self.photo_id
 
     def get_thumbs_up(self) -> int:
         return self.thumbs_up
@@ -64,6 +69,10 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
         self.description = description
         return self
 
+    def set_photo_id(self, photo_id: str) -> "Recipe":
+        self.photo_id = photo_id
+        return self
+
     def inc_rating(self) -> None:
         self.thumbs_up += 1
 
@@ -74,6 +83,10 @@ class Recipe(SqlAlchemyBase, SerializerMixin):
         return str(self)
 
     def __str__(self) -> str:
-        return f'{self.get_name()} {self.get_thumbs_up()}👍🏻 {self.get_thumbs_down()}👎🏻 ' \
-               f'\n\n{self.get_categories()} \n\n{self.get_ingredients()} ' \
-               f' \n\n{self.get_description()}'
+        recipe = f'✨{self.get_name()}✨\n\n'
+        recipe += f'Категория: {self.get_categories().title()} 🍽\n\n'
+        recipe += f'Ингредиенты 🥦\n{self.get_ingredients()}\n\n'
+        recipe += f'Способ приготовления 👨🏻‍🍳\n{self.get_description()}\n\n'
+        recipe += f'Понравилось: {self.get_thumbs_up()}👍🏻 \nНе понравилось: {self.get_thumbs_down()}👎🏻'
+
+        return recipe

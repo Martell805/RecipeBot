@@ -28,12 +28,14 @@ async def random_breakfast(callback: CallbackQuery) -> None:
     :param callback: Callback from TG
     :return: None
     """
-    result = session.query(Recipe).filter(Recipe.categories == "Завтрак").all()
-    names = ', '.join([x.name for x in result])
-    if not names:
-        await callback.message.answer("Рецепты не найдены")
+    result = session.query(Recipe).filter(Recipe.categories == "завтрак").all()
+    ans = "Завтрак 🍳\n\n"
+    for i in range(len(result)):
+        ans += f'{i+1}. {result[i].get_name()}\n'
+    if not result:
+        await callback.message.answer("Рецепты с такой категорией не найдены😣")
         return
-    await callback.message.answer(names)
+    await callback.message.answer(ans)
 
 
 @dp.callback_query_handler(text="random_lunch")
@@ -43,12 +45,14 @@ async def random_lunch(callback: CallbackQuery) -> None:
     :param callback: Callback from TG
     :return: None
     """
-    result = session.query(Recipe).filter(Recipe.categories == "Обед").all()
-    names = ', '.join([x.name for x in result])
-    if not names:
-        await callback.message.answer("Рецепты не найдены")
+    result = session.query(Recipe).filter(Recipe.categories == "обед").all()
+    ans = "Обед 🍲\n\n"
+    for i in range(len(result)):
+        ans += f'{i+1}. {result[i].get_name()}\n'
+    if not result:
+        await callback.message.answer("Рецепты с такой категорией не найдены😣")
         return
-    await callback.message.answer(names)
+    await callback.message.answer(ans)
 
 
 @dp.callback_query_handler(text="random_dinner")
@@ -58,9 +62,11 @@ async def random_dinner(callback: CallbackQuery) -> None:
     :param callback: Callback from TG
     :return: None
     """
-    result = session.query(Recipe).filter(Recipe.categories == "Ужин").all()
-    names = ', '.join([x.name for x in result])
-    if not names:
-        await callback.message.answer("Рецепты не найдены")
+    result = session.query(Recipe).filter(Recipe.categories == "ужин").all()
+    ans = "Ужин 🍝\n\n"
+    for i in range(len(result)):
+        ans += f'{i+1}. {result[i].get_name()}\n'
+    if not result:
+        await callback.message.answer("Рецепты с такой категорией не найдены😣")
         return
-    await callback.message.answer(names)
+    await callback.message.answer(ans)
