@@ -18,6 +18,8 @@ async def random_recipe(callback: CallbackQuery) -> None:
     keyboard = InlineKeyboardMarkup(one_time_keyboard=True).row(
         InlineKeyboardButton(text="👍🏻", callback_data="upvote " + str(recipe.id)),
         InlineKeyboardButton(text="👎🏻", callback_data="downvote " + str(recipe.id)),
+        InlineKeyboardButton(text="🌟", callback_data="favourite " + str(recipe.id)),
+        InlineKeyboardButton(text="🚫", callback_data="avoid " + str(recipe.id)),
     )
 
     await callback.answer(cache_time=0)

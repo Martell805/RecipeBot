@@ -14,7 +14,7 @@ class FindRecipe(StatesGroup):
 async def find_recipe(call: CallbackQuery):
     """
     Function which answers "/find" and shows requester recipe from database to user
-    :param message: Message from TG
+    :param call: Callback from TG
     :return: None
     """
     await call.message.answer(text='Введите название рецепта 👨🏻‍🍳')
@@ -33,6 +33,8 @@ async def input_name(message: Message, state: FSMContext):
     keyboard = InlineKeyboardMarkup(one_time_keyboard=True).row(
         InlineKeyboardButton(text="👍🏻", callback_data="upvote " + str(result.id)),
         InlineKeyboardButton(text="👎🏻", callback_data="downvote " + str(result.id)),
+        InlineKeyboardButton(text="🌟", callback_data="favourite " + str(result.id)),
+        InlineKeyboardButton(text="🚫", callback_data="avoid " + str(result.id)),
     )
 
     await bot.send_photo(message.chat.id, result.get_photo_id(), caption=result, reply_markup=keyboard)

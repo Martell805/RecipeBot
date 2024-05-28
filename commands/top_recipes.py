@@ -10,7 +10,7 @@ from models.Recipe import Recipe
 async def find_recipe(call: CallbackQuery):
     """
     Function which answers "top_recipes" and shows requester 5 best recipes from database to user
-    :param message: Message from TG
+    :param call: Callback from TG
     :return: None
     """
     result = session.query(Recipe).all()
