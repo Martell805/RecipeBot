@@ -7,7 +7,7 @@ from general import dp
 
 from googletrans import Translator
 
-class FindRecipe(StatesGroup):
+class FindWord(StatesGroup):
     name = State()
 
 
@@ -35,10 +35,10 @@ async def find_word(call: CallbackQuery):
     :return: None
     """
     await call.message.answer(text='Введите слово📖')
-    await FindRecipe.name.set()
+    await FindWord.name.set()
 
 
-@dp.message_handler(state=FindRecipe.name)
+@dp.message_handler(state=FindWord.name)
 async def input_name(message: Message, state: FSMContext):
     word: str = message.text
 
