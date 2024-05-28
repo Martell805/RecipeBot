@@ -14,7 +14,7 @@ class FindRecipe(StatesGroup):
 async def find_recipe(call: CallbackQuery):
     """
     Function which answers "/find" and shows requester recipe from database to user
-    :param message: Message from TG
+    :param call: Callback from TG
     :return: None
     """
     await call.message.answer(text='Введите название рецепта 👨🏻‍🍳')

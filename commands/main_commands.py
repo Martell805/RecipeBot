@@ -18,5 +18,6 @@ async def send_welcome(message: Message) -> None:
         .row(InlineKeyboardButton(text="Поиск рецепта по категории", callback_data="category_search_hint"))\
         .row(InlineKeyboardButton(text="Добавить рецепт", callback_data="add"))\
         .row(InlineKeyboardButton(text="Топ 5 рецептов", callback_data="top_recipes"))\
+        .row(InlineKeyboardButton(text="Определение слова", callback_data="word"))\
 
     await message.answer("Привет, это бот с рецептами!👋🏻👨🏻‍🍳\nВыберите кнопку для продолжения", reply_markup=keyboard)
