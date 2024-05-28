@@ -3,3 +3,4 @@ sqlalchemy~=2.0.13
 sqlalchemy-serializer
 setuptools~=63.2.0
 googletrans~=4.0.0rc1
+aioschedule~=0.5.2

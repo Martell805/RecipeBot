@@ -19,5 +19,7 @@ async def send_welcome(message: Message) -> None:
         .row(InlineKeyboardButton(text="Добавить рецепт", callback_data="add"))\
         .row(InlineKeyboardButton(text="Топ 5 рецептов", callback_data="top_recipes"))\
         .row(InlineKeyboardButton(text="Определение слова", callback_data="word"))\
+        .row(InlineKeyboardButton(text="Подписаться на рассылку", callback_data="subscribe"))\
+        .row(InlineKeyboardButton(text="Отписаться от рассылки", callback_data="unsubscribe"))\
 
     await message.answer("Привет, это бот с рецептами!👋🏻👨🏻‍🍳\nВыберите кнопку для продолжения", reply_markup=keyboard)
