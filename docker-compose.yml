@@ -1,0 +1,5 @@
+version: "3.9"
+services:
+  app:
+    image: martell805/recipe-bot:2.0
+    container_name: RecipeBot

@@ -9,6 +9,3 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 CMD ["python3", "main.py"]
-
-# To build an image run in this directory:
-# docker build --tag rb .
